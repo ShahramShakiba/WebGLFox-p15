@@ -20,6 +20,18 @@ To address these challenges, I will structure my code in a more maintainable way
      
 <br/>
 
+> ### What is a Module?
+A module in JavaScript is a file containing code (functions, variables, classes, etc.) that can be reused in other files. Modules help split code into manageable, self-contained chunks. <br/> In simpler terms, a module helps us organize our code into separate files and allows us to bring them in when necessary.
+
+> [!IMPORTANT]
+> #### Benefits of Using Modules?
+> 1. Maintainability: <br/> Breaking the code into smaller files makes it easier to manage.
+> 2. Reusability: <br/> Modules can be imported and used in different parts of an application.
+> 3. Avoiding Conflicts: <br/> Encapsulating code in modules helps avoid naming conflicts.
+> 4. Dependency Management: <br/> Modules can import other modules, making it easy to manage dependencies.
+
+<br/>
+
 > ### What is a Class?
 A class in JavaScript is a blueprint for creating objects. It encapsulates data and functions that operate on the data. <br/> Classes are used to define and create multiple objects with the same properties and methods.
 
@@ -29,18 +41,6 @@ A class in JavaScript is a blueprint for creating objects. It encapsulates data 
 > 2. Reusability: <br/> Classes allow you to create multiple instances with the same structure and behavior.
 > 3. Inheritance: <br/> Classes can extend other classes, promoting code reuse and the creation of a hierarchical structure.
 > 4. Organization: <br/> Classes help organize code by grouping related properties and methods together.
-
-<br/> 
-
-> ### What is a Module?
-A module in JavaScript is a file containing code (functions, variables, classes, etc.) that can be reused in other files. <br/> Modules help split code into manageable, self-contained chunks.
-
-> [!IMPORTANT]
-> #### Benefits of Using Modules?
-> 1. Maintainability: <br/> Breaking the code into smaller files makes it easier to manage.
-> 2. Reusability: <br/> Modules can be imported and used in different parts of an application.
-> 3. Avoiding Conflicts: <br/> Encapsulating code in modules helps avoid naming conflicts.
-> 4. Dependency Management: <br/> Modules can import other modules, making it easy to manage dependencies.
 
 <br/> 
 
