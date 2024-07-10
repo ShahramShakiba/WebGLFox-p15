@@ -26,6 +26,25 @@ export default class Environment {
     this.sunLight.position.set(3.5, 2, -1.25);
 
     this.scene.add(this.sunLight);
+
+    //========== Debug GUI
+    if (this.debug.active) {
+      this.debugFolder
+        .add(this.sunLight, 'intensity', 0, 10, 0.001)
+        .name('Sun Light Intensity');
+
+      this.debugFolder
+        .add(this.sunLight.position, 'x', -5, 5, 0.001)
+        .name('SunLight X');
+
+      this.debugFolder
+        .add(this.sunLight.position, 'y', -5, 5, 0.001)
+        .name('SunLight Y');
+
+      this.debugFolder
+        .add(this.sunLight.position, 'z', -5, 5, 0.001)
+        .name('SunLight Z');
+    }
   }
 
   setEnvironmentMap() {
@@ -59,7 +78,7 @@ export default class Environment {
     if (this.debug.active) {
       this.debugFolder
         .add(this.environmentMap, 'intensity', 0, 4, 0.001)
-        .name('envMapIntensity')
+        .name('envMap Intensity')
         .onChange(this.environmentMap.updateMaterials);
     }
   }
