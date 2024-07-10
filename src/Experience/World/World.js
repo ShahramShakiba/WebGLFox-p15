@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Experience from '../Experience';
+import Environment from './Environment';
 
 export default class World {
   constructor() {
@@ -8,9 +9,11 @@ export default class World {
 
     const testMesh = new THREE.Mesh(
       new THREE.BoxGeometry(1, 1),
-      new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
+      new THREE.MeshStandardMaterial({ color: 0xffffff })
     );
-
     this.scene.add(testMesh);
+
+    //=== Setup
+    this.environment = new Environment();
   }
 }
