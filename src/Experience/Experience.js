@@ -1,8 +1,9 @@
 import * as THREE from 'three';
-import Sizes from './Utils/Sizes';
-import Time from './Utils/Time';
-import Camera from './Camera';
-import Renderer from './Renderer';
+import Sizes from './Utils/Sizes.js';
+import Time from './Utils/Time.js';
+import Camera from './Camera.js';
+import Renderer from './Renderer.js';
+import World from './World/World.js';
 
 let instance = null; // an instance of Experience
 
@@ -25,6 +26,7 @@ export default class Experience {
     this.scene = new THREE.Scene(); // 03
     this.camera = new Camera(); // 04
     this.renderer = new Renderer(); // 05
+    this.world = new World(); // 06
 
     //=== Listen or register a callback for that event
     this.sizes.on('resize', () => {
