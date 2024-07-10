@@ -6,6 +6,7 @@ import Renderer from './Renderer.js';
 import World from './World/World.js';
 import Resources from './Utils/Resources.js';
 import sources from './sources.js';
+import Debug from './Utils/Debug.js';
 
 let instance = null; // an instance of Experience
 
@@ -23,6 +24,7 @@ export default class Experience {
     this.canvas = canvas; // from index.js
 
     //==== Setup
+    this.debug = new Debug(); // 08
     this.sizes = new Sizes(); // 01
     this.time = new Time(); // 02
     this.scene = new THREE.Scene(); // 03
