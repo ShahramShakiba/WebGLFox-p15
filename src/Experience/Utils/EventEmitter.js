@@ -175,3 +175,13 @@ export default class EventEmitter {
     return newName;
   }
 }
+
+/**********
+ - it can be used for any of your classes that need to trigger events
+
+  . an animation of the model has finished
+  . an object has been clicked on 
+  . the player is going out of the level
+  . an enemy died
+  . all resources are loaded
+ */
