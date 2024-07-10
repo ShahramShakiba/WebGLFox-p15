@@ -1,4 +1,5 @@
 export default [
+  //======= Environment Map
   {
     name: 'environmentMapTexture',
     type: 'cubeTexture',
@@ -10,5 +11,17 @@ export default [
       'textures/environmentMap/pz.jpg',
       'textures/environmentMap/nz.jpg',
     ],
+  },
+
+  //======= Texture
+  {
+    name: 'dirtColorTexture',
+    type: 'texture',
+    path: 'textures/dirt/color.jpg',
+  },
+  {
+    name: 'dirtNormalTexture',
+    type: 'texture',
+    path: 'textures/dirt/normal.jpg',
   },
 ];
