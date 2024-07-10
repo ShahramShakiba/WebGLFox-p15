@@ -8,9 +8,9 @@ let instance = null; // an instance of Experience
 export default class Experience {
   constructor(canvas) {
     if (instance) {
-      return instance; 
+      return instance;
     }
-    instance = this; 
+    instance = this;
 
     //==== Global access - like in terminal
     window.experience = this;
@@ -34,7 +34,11 @@ export default class Experience {
     });
   }
 
-  resize() {}
+  resize() {
+    this.camera.resize();
+  }
 
-  update() {}
+  update() {
+    this.camera.update();
+  }
 }
