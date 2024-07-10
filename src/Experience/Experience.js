@@ -53,4 +53,49 @@ export default class Experience {
     this.world.update();
     this.renderer.update();
   }
+
+  destroy() {
+    this.sizes.off('resize');
+    this.time.off('tick');
+
+    //===== Traverse the whole scene - Destroying
+    this.scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        // console.log(child);
+
+        child.geometry.dispose();
+
+        //===== Loop through the material properties
+        for (const key in child.material) {
+          const value = child.material[key];
+          // console.log(value);
+
+          // if there's a value and value has a dispose function
+          if (value && typeof value.dispose === 'function') {
+            value.dispose();
+          }
+        }
+      }
+    });
+
+    this.camera.controls.dispose();
+    this.renderer.instance.dispose();
+
+    if (this.debug.active) {
+      this.debug.gui.destroy();
+    }
+  }
 }
+
+/********** Destroying
+ - at some point, you might need to destroy parts of your experience, or even the whole thing
+
+ - it could be because the animation is done, the player moved to another level, the WebGL isn't visible anymore or maybe the fox ran away.
+ 
+ - we could leave things as they are, but that is bad for performances.
+ 
+
+
+ - if you are using post-processing, you'll need to dispose of the "EffectComposer", its "WebGLRenderTarget" and any "potential passes" you are using. 
+ 
+ - if you have a more complex project with a lot to destroy, you may want to create a destroy() method for each class. */
