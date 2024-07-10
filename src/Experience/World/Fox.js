@@ -11,7 +11,7 @@ export default class Fox {
 
     //=== Tweak the Fox
     if (this.debug.active) {
-      this.debugFolder = this.debug.gui.addFolder('Fox');
+      this.debugFolder = this.debug.gui.addFolder('Fox').close();
     }
 
     //=== Access Model to manipulate the scene or animation
