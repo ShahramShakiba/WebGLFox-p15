@@ -6,10 +6,8 @@ export default class Resources extends EventEmitter {
   constructor(sources) {
     super();
 
-    //=== Options
     this.sources = sources;
 
-    //=== Setup
     this.items = {};
     this.toLoad = this.sources.length;
     this.loaded = 0;
@@ -28,18 +26,21 @@ export default class Resources extends EventEmitter {
   startLoading() {
     for (const source of this.sources) {
       switch (source.type) {
+        //======= Fox Model
         case 'gltfModel':
           this.loaders.gltfLoader.load(source.path, (file) => {
             this.sourceLoaded(source, file);
           });
           break;
 
+        //======= Dirt Texture
         case 'texture':
           this.loaders.textureLoader.load(source.path, (file) => {
             this.sourceLoaded(source, file);
           });
           break;
 
+        //======= EnvironmentMap
         case 'cubeTexture':
           this.loaders.cubeTextureLoader.load(source.path, (file) => {
             this.sourceLoaded(source, file);
@@ -57,7 +58,7 @@ export default class Resources extends EventEmitter {
 
     this.loaded++; // update loaded value
 
-    //=== when loading assets finished
+    //==trigger items-ready when loading assets finished
     if (this.loaded === this.toLoad) {
       this.trigger('ready');
     }

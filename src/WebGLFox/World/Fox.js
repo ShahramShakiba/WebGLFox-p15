@@ -1,20 +1,21 @@
 import * as THREE from 'three';
-import Experience from '../Experience';
+import Index from '../Index';
 
 export default class Fox {
   constructor() {
-    this.experience = new Experience();
-    this.scene = this.experience.scene;
-    this.resources = this.experience.resources;
-    this.time = this.experience.time;
-    this.debug = this.experience.debug;
+    this.index = new Index();
 
-    //=== Tweak the Fox
+    this.scene = this.index.scene;
+    this.resources = this.index.resources;
+    this.time = this.index.time;
+    this.debug = this.index.debug;
+
+    //====== Tweak the Fox
     if (this.debug.active) {
       this.debugFolder = this.debug.gui.addFolder('Fox').close();
     }
 
-    //=== Access Model to manipulate the scene or animation
+    //====== Get Model to manipulate the scene/animation
     this.resource = this.resources.items.foxModel;
 
     this.setModel();
@@ -40,12 +41,15 @@ export default class Fox {
 
     this.animation.actions = {};
 
+    //===== Standing - idle
     this.animation.actions.idle = this.animation.mixer.clipAction(
       this.resource.animations[0]
     );
+    //===== Walking
     this.animation.actions.walking = this.animation.mixer.clipAction(
       this.resource.animations[1]
     );
+    //===== Running
     this.animation.actions.running = this.animation.mixer.clipAction(
       this.resource.animations[2]
     );
@@ -53,7 +57,7 @@ export default class Fox {
     this.animation.actions.current = this.animation.actions.idle;
     this.animation.actions.current.play();
 
-    //========== Create a smooth changing between animations
+    //========== Smooth changing between animations
     this.animation.play = (name) => {
       const newAction = this.animation.actions[name];
       const prevAction = this.animation.actions.current;
@@ -88,7 +92,8 @@ export default class Fox {
   }
 
   update() {
-    this.animation.mixer.update(this.time.delta / 1000); // convert to second since delta is in milliseconds but AnimationMixer in seconds
+    this.animation.mixer.update(this.time.delta / 1000);
+    // convert to second since delta is in milliseconds but AnimationMixer in seconds
   }
 }
 

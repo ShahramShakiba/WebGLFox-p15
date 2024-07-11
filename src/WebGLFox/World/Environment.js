@@ -1,14 +1,14 @@
 import * as THREE from 'three';
-import Experience from '../Experience';
+import Index from '../Index.js';
 
 export default class Environment {
   constructor() {
-    this.experience = new Experience();
-    this.scene = this.experience.scene;
-    this.resources = this.experience.resources;
-    this.debug = this.experience.debug;
+    this.index = new Index();
+    this.scene = this.index.scene;
+    this.resources = this.index.resources;
+    this.debug = this.index.debug;
 
-    //=== Tweak the Environment
+    //===== Tweak the Environment
     if (this.debug.active) {
       this.debugFolder = this.debug.gui.addFolder('Environment');
     }
@@ -18,7 +18,7 @@ export default class Environment {
   }
 
   setSunLight() {
-    this.sunLight = new THREE.DirectionalLight('#ffffff', 4);
+    this.sunLight = new THREE.DirectionalLight('#ffffff', 2.9);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.camera.far = 15;
     this.sunLight.shadow.mapSize.set(1024, 1024);
@@ -49,14 +49,13 @@ export default class Environment {
 
   setEnvironmentMap() {
     this.environmentMap = {};
-    this.environmentMap.intensity = 0.4;
+    this.environmentMap.intensity = 0.22;
     this.environmentMap.texture = this.resources.items.environmentMapTexture;
     this.environmentMap.texture.colorSpace = THREE.SRGBColorSpace;
 
-    // this.scene.background = this.environmentMap.texture;
     this.scene.environment = this.environmentMap.texture;
 
-    //=== Update everything in the scene
+    //===== Update material in the scene
     this.environmentMap.updateMaterials = () => {
       this.scene.traverse((child) => {
         // console.log(child);

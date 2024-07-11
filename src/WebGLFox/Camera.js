@@ -1,25 +1,23 @@
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import * as THREE from 'three';
-import Experience from './Experience';
+import Index from './Index.js';
 
 export default class Camera {
   constructor() {
-    this.experience = new Experience();
+    this.index = new Index();
 
-    this.sizes = this.experience.sizes;
-    this.scene = this.experience.scene;
-    this.canvas = this.experience.canvas;
-
-    // console.log(this);
+    this.sizes = this.index.sizes;
+    this.scene = this.index.scene;
+    this.canvas = this.index.canvas;
 
     this.setInstance();
     this.setOrbitControls();
   }
 
-  //===== Create actual Camera
+  //===== Initiate actual "Camera"
   setInstance() {
     this.instance = new THREE.PerspectiveCamera(
-      35,
+      55,
       this.sizes.width / this.sizes.height,
       0.1,
       100
@@ -33,45 +31,45 @@ export default class Camera {
     this.controls.enableDamping = true;
   }
 
-  //===== Resize Camera
+  // Camera
   resize() {
     this.instance.aspect = this.sizes.width / this.sizes.height;
     this.instance.updateProjectionMatrix();
   }
 
-  //===== Update OrbitControls
+  // OrbitControls
   update() {
     this.controls.update();
   }
 }
 
-/********** Access Experience to access sizes, canvas,...
+/********** Access Index to access sizes, canvas,...
  * From a global variable - it can be messy
   
-    this.experience = window.experience;
-    console.log(this.experience.sizes.width);
+    this.index = window.index;
+    console.log(this.index.sizes.width);
 
 
  * From a parameter - you'll get a lot of parameters, send it, get it, especially if you have depth classes you need to pass it to all their children
 
-    this.camera = new Camera(this); // send the experience itself to the children, then in Camera we can retrieve it 
+    this.camera = new Camera(this); // send the index itself to the children, then in Camera we can retrieve it 
 
-    constructor(experience) {
-      this.experience = experience;
-      console.log(this.experience.sizes.width);
+    constructor(index) {
+      this.index = index;
+      console.log(this.index.sizes.width);
     }
 
 
  * Through a singleton - a singleton is a class that will instantiate just like usual when you instantiate your class you'll get your instance
     - but for all following times, it'll return the first instance
 
-    in Experience.js:
-    first create: let instance = null; - outside of Experience
+    in Index.js:
+    first create: let instance = null; - outside of Index
 
     then inside: 
     if (instance) {
       // console.log('After');
-      return instance; //return already experience-instance
+      return instance; //return already index-instance
     }
     // console.log('Start');
 

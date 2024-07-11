@@ -1,12 +1,12 @@
 import * as THREE from 'three';
-import Experience from '../Experience.js';
+import Index from '../Index.js';
 
 export default class Floor {
   constructor() {
-    this.experience = new Experience();
+    this.index = new Index();
 
-    this.scene = this.experience.scene;
-    this.resources = this.experience.resources;
+    this.scene = this.index.scene;
+    this.resources = this.index.resources;
 
     this.setGeometry();
     this.setTexture();
@@ -21,18 +21,18 @@ export default class Floor {
   setTexture() {
     this.textures = {};
 
-    //=== Color Texture
+    //===== Color Texture
     this.textures.color = this.resources.items.dirtColorTexture;
     this.textures.color.colorSpace = THREE.SRGBColorSpace;
 
-    this.textures.color.repeat.set(1.5, 1.5);
+    this.textures.color.repeat.set(4, 4);
     this.textures.color.wrapS = THREE.RepeatWrapping;
     this.textures.color.wrapT = THREE.RepeatWrapping;
 
-    //=== Normal Texture
+    //===== Normal Texture
     this.textures.normal = this.resources.items.dirtNormalTexture;
 
-    this.textures.normal.repeat.set(1.5, 1.5);
+    this.textures.normal.repeat.set(4, 4);
     this.textures.normal.wrapS = THREE.RepeatWrapping;
     this.textures.normal.wrapT = THREE.RepeatWrapping;
   }
@@ -41,7 +41,12 @@ export default class Floor {
     this.material = new THREE.MeshStandardMaterial({
       map: this.textures.color,
       normalMap: this.textures.normal,
+      roughness: 0.9,
+      metalness: 0.2,
     });
+
+    this.textures.color.anisotropy = 16;
+    this.textures.normal.anisotropy = 16;
   }
 
   setMesh() {
@@ -52,3 +57,10 @@ export default class Floor {
     this.scene.add(this.floor);
   }
 }
+
+/********** anisotropy
+ * Without anisotropic filtering, a texture might look blurry or distorted when viewed at a sharp angle. 
+
+ - When you set the anisotropy level for a texture, you are specifying how much the graphics engine should prioritize the quality of textures viewed at these steep angles. Higher values provide better quality at the cost of some performance. 
+
+ - anisotropy improves the visual quality of textures viewed at angles, and setting it to 16 in your code ensures that the textures on your floor will look as detailed and clear as possible when viewed from various perspectives. */

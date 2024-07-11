@@ -1,16 +1,15 @@
-import EventEmitter from './EventEmitter';
+import EventEmitter from './EventEmitter.js';
 
 export default class Time extends EventEmitter {
   constructor() {
     super();
 
-    //==== Setup
     this.start = new Date();
     this.current = this.start;
     this.elapsedTime = 0;
     this.delta = 16;
 
-    // not calling tick immediately, but wait 1 frame
+    //===== Wait 1 frame then call tick fn
     window.requestAnimationFrame(() => {
       this.tick();
     });

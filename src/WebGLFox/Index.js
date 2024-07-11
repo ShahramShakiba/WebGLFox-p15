@@ -8,22 +8,22 @@ import Resources from './Utils/Resources.js';
 import sources from './sources.js';
 import Debug from './Utils/Debug.js';
 
-let instance = null; // an instance of Experience
+let instance = null; // An instance of Experience
 
-export default class Experience {
+export default class Index {
   constructor(canvas) {
     if (instance) {
       return instance;
     }
     instance = this;
 
-    //==== Global access - like in terminal
+    //======= Global access - like in terminal
     window.experience = this;
 
-    //==== Options
-    this.canvas = canvas; // from index.js
+    //======= Canvas
+    this.canvas = canvas;
 
-    //==== Setup
+    //======= Setup
     this.debug = new Debug(); // 08
     this.sizes = new Sizes(); // 01
     this.time = new Time(); // 02
@@ -33,7 +33,7 @@ export default class Experience {
     this.renderer = new Renderer(); // 05
     this.world = new World(); // 06
 
-    //=== Listen or register a callback for that event
+    //=== Listen/register an Event
     this.sizes.on('resize', () => {
       this.resize();
     });
@@ -58,7 +58,7 @@ export default class Experience {
     this.sizes.off('resize');
     this.time.off('tick');
 
-    //===== Traverse the whole scene - Destroying
+    //======== Destroying all objects
     this.scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         // console.log(child);
@@ -86,6 +86,12 @@ export default class Experience {
     }
   }
 }
+
+/********** OOP - Object-Oriented Programming 
+ - In this method, the source code of the program is written in the form of small pieces of code or "Objects". You can use any of these components multiple times throughout your program.
+
+ - Imagine the game of building a house or Lego, where we stick small and simple pieces together to make meaningful, bigger and more interesting objects. In object-oriented programming, we are also faced with such a process, and by using objects, we can create complex and professional programs.
+ */
 
 /********** Destroying
  - at some point, you might need to destroy parts of your experience, or even the whole thing
