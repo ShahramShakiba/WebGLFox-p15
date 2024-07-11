@@ -11,11 +11,11 @@
 
 > ### Project Structure and Code Organization
 In this repository, I previously consolidated all projects into a single file for practice purposes. <br/> However, real-world projects typically involve significantly more code, making such an approach impractical. Consolidating all code into one file can lead to several issues, including:
-1. _Difficulty in Navigation_: <br/> Locating specific sections of code becomes challenging.
-2. _Code Reusability_: <br/> Reusing specific parts of the code is cumbersome.
-3. _Variable Conflicts_: <br/> Ensuring variable names do not conflict is difficult.
-4. _Collaboration Issues_: <br/> Working with other developers on the same file increases the likelihood of conflicts.
-5. _Reduced Efficiency_: <br/> Excessive scrolling leads to inefficiency and physical strain. <br/><br/>
+1. _Difficulty in Navigation_ : <br/> Locating specific sections of code becomes challenging. <br/> <br/>
+2. _Code Reusability_ : <br/> Reusing specific parts of the code is cumbersome.  <br/> <br/>
+3. _Variable Conflicts_ : <br/> Ensuring variable names do not conflict is difficult.  <br/> <br/>
+4. _Collaboration Issues_ : <br/> Working with other developers on the same file increases the likelihood of conflicts. <br/> <br/>
+5. _Reduced Efficiency_ : <br/> Excessive scrolling leads to inefficiency and physical strain. <br/><br/>
 To address these challenges, I will structure my code in a more maintainable way. This project will utilize JavaScript concepts such as `  classes  ` and `  modules  ` to enhance code organization and readability. <br/> By adopting these practices, the codebase will be easier to navigate, maintain, and collaborate on.
      
 <br/>
