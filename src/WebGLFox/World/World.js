@@ -7,13 +7,13 @@ export default class World {
   constructor() {
     this.index = new Index();
     this.scene = this.index.scene;
-    this.resources = this.index.resources;
+    this.resources = this.index.resources; // W-01.2
 
-    //=== Wait for resources
+    //=== Wait for resources - W-01.3
     this.resources.on('ready', () => {
-      this.floor = new Floor();
-      this.fox = new Fox();
-      this.environment = new Environment();
+      this.floor = new Floor(); // W-01.6
+      this.fox = new Fox(); // W-01.7
+      this.environment = new Environment(); // W-01.0 - Light & envMap Texture
     });
   }
 

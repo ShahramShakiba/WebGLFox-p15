@@ -12,23 +12,23 @@ export default class Fox {
 
     //====== Tweak the Fox
     if (this.debug.active) {
-      this.debugFolder = this.debug.gui.addFolder('Fox').close();
+      this.debugFolder = this.debug.gui.addFolder('Fox');
     }
 
     //====== Get Model to manipulate the scene/animation
-    this.resource = this.resources.items.foxModel;
+    this.foxSource = this.resources.items.foxModel;
 
     this.setModel();
     this.setAnimation();
   }
 
   setModel() {
-    this.model = this.resource.scene;
-    this.model.scale.set(0.03, 0.03, 0.03);
+    this.foxModel = this.foxSource.scene;
+    this.foxModel.scale.set(0.03, 0.03, 0.03);
 
-    this.scene.add(this.model);
+    this.scene.add(this.foxModel);
 
-    this.model.traverse((child) => {
+    this.foxModel.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true;
       }
@@ -37,21 +37,21 @@ export default class Fox {
 
   setAnimation() {
     this.animation = {};
-    this.animation.mixer = new THREE.AnimationMixer(this.model);
+    this.animation.mixer = new THREE.AnimationMixer(this.foxModel);
 
     this.animation.actions = {};
 
     //===== Standing - idle
     this.animation.actions.idle = this.animation.mixer.clipAction(
-      this.resource.animations[0]
+      this.foxSource.animations[0]
     );
     //===== Walking
     this.animation.actions.walking = this.animation.mixer.clipAction(
-      this.resource.animations[1]
+      this.foxSource.animations[1]
     );
     //===== Running
     this.animation.actions.running = this.animation.mixer.clipAction(
-      this.resource.animations[2]
+      this.foxSource.animations[2]
     );
 
     this.animation.actions.current = this.animation.actions.idle;
@@ -72,17 +72,9 @@ export default class Fox {
     //========== Debug GUI
     if (this.debug.active) {
       const debugObject = {
-        playIdle: () => {
-          this.animation.play('idle');
-        },
-
-        playWalking: () => {
-          this.animation.play('walking');
-        },
-
-        playRunning: () => {
-          this.animation.play('running');
-        },
+        playIdle: () => this.animation.play('idle'),
+        playWalking: () => this.animation.play('walking'),
+        playRunning: () => this.animation.play('running'),
       };
 
       this.debugFolder.add(debugObject, 'playIdle');

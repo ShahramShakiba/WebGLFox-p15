@@ -4,8 +4,9 @@ import Index from '../Index.js';
 export default class Environment {
   constructor() {
     this.index = new Index();
+
     this.scene = this.index.scene;
-    this.resources = this.index.resources;
+    this.resources = this.index.resources; // W-01.4
     this.debug = this.index.debug;
 
     //===== Tweak the Environment
@@ -13,8 +14,8 @@ export default class Environment {
       this.debugFolder = this.debug.gui.addFolder('Environment');
     }
 
-    this.setSunLight();
-    this.setEnvironmentMap();
+    this.setSunLight(); // W-01.1
+    this.setEnvironmentMap(); // W-01.5
   }
 
   setSunLight() {
@@ -49,13 +50,14 @@ export default class Environment {
 
   setEnvironmentMap() {
     this.environmentMap = {};
-    this.environmentMap.intensity = 0.22;
+
     this.environmentMap.texture = this.resources.items.environmentMapTexture;
+    this.environmentMap.intensity = 0.22;
     this.environmentMap.texture.colorSpace = THREE.SRGBColorSpace;
 
     this.scene.environment = this.environmentMap.texture;
 
-    //===== Update material in the scene
+    //===== Update material in the scene to interact with envMap
     this.environmentMap.updateMaterials = () => {
       this.scene.traverse((child) => {
         // console.log(child);

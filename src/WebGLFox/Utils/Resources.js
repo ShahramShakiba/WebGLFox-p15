@@ -18,6 +18,7 @@ export default class Resources extends EventEmitter {
 
   setLoaders() {
     this.loaders = {};
+
     this.loaders.gltfLoader = new GLTFLoader();
     this.loaders.textureLoader = new THREE.TextureLoader();
     this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader();
@@ -54,13 +55,15 @@ export default class Resources extends EventEmitter {
   }
 
   sourceLoaded(source, file) {
-    this.items[source.name] = file;
+    this.items[source.name] = file; // save loaded file
 
     this.loaded++; // update loaded value
 
     //==trigger items-ready when loading assets finished
     if (this.loaded === this.toLoad) {
       this.trigger('ready');
+
+      // console.log('All assets loaded!', this.loaded);
     }
   }
 }

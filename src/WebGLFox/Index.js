@@ -8,7 +8,7 @@ import Resources from './Utils/Resources.js';
 import sources from './sources.js';
 import Debug from './Utils/Debug.js';
 
-let instance = null; // An instance of Experience
+let instance = null; // An instance of Index
 
 export default class Index {
   constructor(canvas) {
@@ -18,7 +18,7 @@ export default class Index {
     instance = this;
 
     //======= Global access - like in terminal
-    window.experience = this;
+    window.index = this;
 
     //======= Canvas
     this.canvas = canvas;
@@ -34,13 +34,8 @@ export default class Index {
     this.world = new World(); // 06
 
     //=== Listen/register an Event
-    this.sizes.on('resize', () => {
-      this.resize();
-    });
-
-    this.time.on('tick', () => {
-      this.update();
-    });
+    this.sizes.on('resize', () => this.resize());
+    this.time.on('time', () => this.update());
   }
 
   resize() {
@@ -56,7 +51,7 @@ export default class Index {
 
   destroy() {
     this.sizes.off('resize');
-    this.time.off('tick');
+    this.time.off('time');
 
     //======== Destroying all objects
     this.scene.traverse((child) => {

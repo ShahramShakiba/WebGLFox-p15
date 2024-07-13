@@ -14,7 +14,7 @@ export default class Camera {
     this.setOrbitControls();
   }
 
-  //===== Initiate actual "Camera"
+  //======== Initiate "Camera"
   setInstance() {
     this.instance = new THREE.PerspectiveCamera(
       55,
