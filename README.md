@@ -92,6 +92,24 @@ A class in JavaScript is a blueprint for creating objects. It encapsulates data 
 
 <br/> 
 
+> ### What is Destroy Method?
+The destroy method is crucial for resource management, especially in applications that involve complex graphics, real-time updates, or dynamic resource allocation. <br/> The destroy method ensures that all resources are properly cleaned up when the application or a particular instance of it is no longer needed.
+
+> ### Why Use the Destroy Method
+1. ` Resource Cleanup :` <br/> It helps release memory and other resources (e.g., WebGL contexts, event listeners) that are no longer needed.
+   
+2. ` Prevent Memory Leaks :` <br/> By disposing of geometries, materials, and textures, you prevent memory leaks that can degrade performance over time.
+   
+3. ` Stability :` <br/>  Ensures the application remains stable, especially when creating and destroying multiple instances of the application.
+
+> ### When to Use the Destroy Method
+You should call the destroy method in scenarios such as:
+   - When the user navigates away from the page or closes the application.
+   - When you are dynamically creating and removing instances of your application (e.g., in a single-page application where components are frequently mounted and unmounted).
+   - During tests to ensure that resources are properly cleaned up between test cases.
+
+<br/><br/>
+
 > By leveraging "classes" and "modules", developers can create a more maintainable, scalable, and understandable codebase, which is crucial for the success of any software project.
 
 <br/> <br/> 
