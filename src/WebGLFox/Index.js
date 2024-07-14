@@ -99,4 +99,19 @@ export default class Index {
 
  - if you are using post-processing, you'll need to dispose of the "EffectComposer", its "WebGLRenderTarget" and any "potential passes" you are using. 
  
- - if you have a more complex project with a lot to destroy, you may want to create a destroy() method for each class. */
+ - if you have a more complex project with a lot to destroy, you may want to create a destroy() method for each class. 
+
+ - This is essential for efficient memory management and performance optimization in Three.js applications.
+
+***** Destroying all objects
+    - for (const key in child.material) { ... }
+      . This loop iterates over all properties of the mesh's material. 
+      
+      . Materials in Three.js can have various properties like map, bumpMap, normalMap, etc., which can themselves be textures or other objects that consume memory.
+
+
+    - if (value && typeof value.dispose === 'function') { value.dispose(); }
+      . This condition checks if the value exists and if it has a dispose method. If both conditions are met, it calls the dispose method on the value.
+
+      . This is necessary because some material properties (like textures) need to be explicitly disposed of to free up memory.
+  */
