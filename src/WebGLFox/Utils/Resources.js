@@ -10,7 +10,7 @@ export default class Resources extends EventEmitter {
 
     this.items = {};
     this.toLoad = this.sources.length;
-    this.loaded = 0;
+    this.isLoaded = 0;
 
     this.setLoaders();
     this.startLoading();
@@ -55,15 +55,17 @@ export default class Resources extends EventEmitter {
   }
 
   sourceLoaded(source, file) {
-    this.items[source.name] = file; // save loaded file
+    this.items[source.name] = file; 
+    // access the resource later in the application using its name
 
-    this.loaded++; // update loaded value
+    this.isLoaded++; 
+    // keep track of how many resources have been loaded so far
 
     //==trigger items-ready when loading assets finished
-    if (this.loaded === this.toLoad) {
+    if (this.isLoaded === this.toLoad) {
       this.trigger('ready');
 
-      // console.log('All assets loaded!', this.loaded);
+      // console.log('All assets loaded!', this.isLoaded);
     }
   }
 }
